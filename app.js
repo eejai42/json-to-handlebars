@@ -81,7 +81,7 @@ function runApp(args) {
     let match;
     while ((match = inlineHelperRegex.exec(inputTemplate)) !== null) {
       const helperName = match[1];
-      const helperCode = `Handlebars.registerHelper('${helperName}', function() { ${match.input.slice(match.index + match[0].length).split('#*/')[0].trim()} });`;
+      const helperCode = `handlebars.registerHelper('${helperName}', function() { ${match.input.slice(match.index + match[0].length).split('#*/')[0].trim()} });`;
       eval(helperCode);
     }
 
