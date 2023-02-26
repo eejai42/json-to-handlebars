@@ -33,6 +33,7 @@ handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
             return options.inverse(this);
     }
 });
+handlebars.registerHelper('findShape', function() {return "shapexyz"});
 
 function runApp(args) {
   try {
