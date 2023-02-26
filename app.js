@@ -4,35 +4,45 @@
 const fs = require("fs");
 const program = require("commander");
 const handlebars = require("handlebars");
-const helpers = require('handlebars-helpers')();
-handlebars.registerHelper('lookup', helpers.lookup);
-handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
-    switch (operator) {
-        case '==':
-            return (v1 == v2) ? options.fn(this) : options.inverse(this);
-        case '===':
-            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-        case '!=':
-            return (v1 != v2) ? options.fn(this) : options.inverse(this);
-        case '!==':
-            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-        case '<':
-            return (v1 < v2) ? options.fn(this) : options.inverse(this);
-        case '<=':
-            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-        case '>':
-            return (v1 > v2) ? options.fn(this) : options.inverse(this);
-        case '>=':
-            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-        case '&&':
-            return (v1 && v2) ? options.fn(this) : options.inverse(this);
-        case '||':
-            return (v1 || v2) ? options.fn(this) : options.inverse(this);
-        default:
-            return options.inverse(this);
-    }
+const handlebarsHelpers = require('handlebars-helpers')();
+handlebars.registerHelper(handlebarsHelpers);
+
+handlebars.registerHelper('find', function (array, property, value) {
+    return array.find(function (item) {
+        return item[property] === value;
+    });
 });
+
+//const helpers = require('handlebars-helpers')();
+//handlebars.registerHelper('lookup', helpers.lookup);
+//handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+//    switch (operator) {
+//        case '==':
+//            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+//        case '===':
+//            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+//        case '!=':
+//            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+//        case '!==':
+//            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+//        case '<':
+//            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+//        case '<=':
+//            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+//        case '>':
+//            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+//        case '>=':
+//            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+//        case '&&':
+//            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+//        case '||':
+//            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+//        default:
+//            return options.inverse(this);
+//    }
+//});
 
 
 function runApp(args) {
@@ -78,12 +88,24 @@ function runApp(args) {
     const inputTemplate = fs.readFileSync(program.template, "utf-8");
 
     // Register inline helpers with Handlebars
-    const inlineHelperRegex = /^#\\*inline\s+([\w-]+)\s*$/mg;
-    let match;
+      //const inlineHelperRegex = /^#\\*inline\s+([\w-]+)\s*$/mg;
+      //const inlineHelperRegex = /^#*inline\s+([\w-]+)\s*$/mg;
+      
+      //const inlineHelperRegex = /inline/mg;
+//      const inlineHelperRegex = /^{{#\*inline.*}}/mg;
+      //const inlineHelperRegex = /^{{#\\*inline\s+\"(.+?)\"}}([\s\S]+?){{\/inline}}$/gm;
+      //const inlineHelperRegex = /{{#\\*inline\s+([\w-]+)\s*}}([\s\S]+?){{\/inline}}/mg;
+      //const inlineHelperRegex = /{{#\\*inline\s+("[^"]*"|'[^']*'|[^'"\s]+)\s*}}\s*([\s\S]*?)\s*{{\/inline}}/mg;
+      const inlineHelperRegex = /{{#?\*inline [^}]*{{\/inline}}/mg;
+
+
+
+      let match;
+
     while ((match = inlineHelperRegex.exec(inputTemplate)) !== null) {
       const helperName = match[1];
-      throw `${helperName} registered`;
-      const helperCode = `handlebars.registerHelper('${helperName}', function() { ${match.input.slice(match.index + match[0].length).split('#*/')[0].trim()} });`;
+      throw `$Registering helpers ${helperName} - ${match}`;
+      //const helperCode = `handlebars.registerHelper('${helperName}', function() { ${match.input.slice(match.index + match[0].length).split('#*/')[0].trim()} });`;
       eval(helperCode);
     }
 
