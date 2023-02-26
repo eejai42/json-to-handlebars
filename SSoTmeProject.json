@@ -1,0 +1,15 @@
+{
+  "ShowHidden": false,
+  "ShowAllFiles": false,
+  "SaveDisabled": false,
+  "SSoTmeProjectId": "3c68f6d1-49ee-411b-9390-cbab8d65e409",
+  "Name": "hjson-to-json",
+  "ProjectSettings": [
+    {
+      "ProjectSettingId": "578f012b-ed66-4d12-a2f6-f504bb4cf547",
+      "Name": "project-name",
+      "Value": "hjson-to-json"
+    }
+  ],
+  "ProjectTranspilers": []
+}

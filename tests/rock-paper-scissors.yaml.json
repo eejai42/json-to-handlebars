@@ -1,0 +1,65 @@
+{
+  "shapes": [
+    {
+      "name": "Rock (CHANGED)",
+      "opp_code": "A",
+      "player_code": "X",
+      "wins_against": "C",
+      "score": 1
+    },
+    {
+      "name": "Paper",
+      "opp_code": "B",
+      "player_code": "Y",
+      "wins_against": "A",
+      "score": 2
+    },
+    {
+      "name": "Scissors",
+      "opp_code": "C",
+      "player_code": "Z",
+      "wins_against": "B",
+      "score": 3
+    }
+  ],
+  "outcomes": [
+    {
+      "name": "win",
+      "score": 6
+    },
+    {
+      "name": "loss",
+      "score": 0
+    },
+    {
+      "name": "draw",
+      "score": 3
+    }
+  ],
+  "games": [
+    {
+      "name": "Example Game",
+      "score": 15,
+      "rounds": [
+        {
+          "player_shape": "Paper",
+          "opp_shape": "Rock",
+          "outcome": "win",
+          "score": 8
+        },
+        {
+          "player_shape": "Rock",
+          "opp_shape": "Scissors",
+          "outcome": "loss",
+          "score": 1
+        },
+        {
+          "player_shape": "Scissors",
+          "opp_shape": "Scissors",
+          "outcome": "draw",
+          "score": 6
+        }
+      ]
+    }
+  ]
+}
