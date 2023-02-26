@@ -5,7 +5,7 @@ const fs = require("fs");
 const handlebars = require("handlebars");
 const program = require("commander");
 
-Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
     switch (operator) {
         case '==':
@@ -89,3 +89,4 @@ function runApp(args) {
 runApp(process.argv);
 
 module.exports = { runApp };
+
