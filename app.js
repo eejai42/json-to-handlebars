@@ -2,9 +2,10 @@
 "use strict";
 
 const fs = require("fs");
-const handlebars = require("handlebars");
 const program = require("commander");
-
+const handlebars = require("handlebars");
+const helpers = require('handlebars-helpers')();
+handlebars.registerHelper('lookup', helpers.lookup);
 handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
     switch (operator) {
