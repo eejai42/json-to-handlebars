@@ -75,6 +75,16 @@ function runApp(args) {
 
     // Read the input Handlebars template file
     const inputTemplate = fs.readFileSync(program.template, "utf-8");
+
+    // Register inline helpers with Handlebars
+    const inlineHelperRegex = /^#\\*inline\s+([\w-]+)\s*$/mg;
+    let match;
+    while ((match = inlineHelperRegex.exec(inputTemplate)) !== null) {
+      const helperName = match[1];
+      const helperCode = `Handlebars.registerHelper('${helperName}', function() { ${match.input.slice(match.index + match[0].length).split('#*/')[0].trim()} });`;
+      eval(helperCode);
+    }
+
     const template = handlebars.compile(inputTemplate);
 
     // Use the Handlebars library to convert the input JSON to Markdown format using the Handlebars template
