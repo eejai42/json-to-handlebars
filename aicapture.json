@@ -1,6 +1,7 @@
 {
   "ShowHidden": false,
   "ShowAllFiles": false,
+  "CurrentPath": "",
   "SaveDisabled": false,
   "SSoTmeProjectId": "3c68f6d1-49ee-411b-9390-cbab8d65e409",
   "Name": "json-to-handlebars",

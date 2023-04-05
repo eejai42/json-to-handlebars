@@ -1,0 +1,6 @@
+{
+  "project": {
+    "name": "json-to-handlebars"
+  },
+  "description": "Based on the provided code, it appears to be a Node.js command-line interface (CLI) tool for converting JSON data into Handlebars templates. The tool accepts two required arguments: `--json` for specifying the input JSON file and `--template` for specifying the Handlebars template file. Optional arguments include `--root-node` for specifying the root node in the JSON data if it is nested, and `-h/--help` for displaying usage information.\n\nThe main function `runApp()` parses the command-line arguments using the `commander` library, reads the input files with `fs`, compiles the Handlebars template using `handlebars`, and finally renders the template with the data and outputs the result to the console.\n\nThe code also registers some Handlebars helpers, including an inline helper that is defined within the Handlebars template itself using the `{{#*inline}}` syntax."
+}
